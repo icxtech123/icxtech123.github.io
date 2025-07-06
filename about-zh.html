@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>關於 ICX Technology</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .hero {
+      background: url('https://images.unsplash.com/photo-1548095115-45697e70aa56?auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
+      height: 400px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-align: center;
+      padding: 0 1rem;
+    }
+
+    .hero h1 {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 1rem 2rem;
+      border-radius: 10px;
+      font-size: 2.5rem;
+    }
+
+    .section {
+      max-width: 1000px;
+      margin: auto;
+      padding: 60px 20px;
+    }
+
+    .section h2 {
+      color: #002244;
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    form {
+      flex: 1 1 300px;
+    }
+
+    form input, form textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    form button {
+      background: #002244;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .contact-info {
+      flex: 1 1 300px;
+      line-height: 2;
+    }
+
+    footer {
+      background: #002244;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <h1>關於 ICX Technology</h1>
+  </div>
+
+  <section class="section">
+    <h2>公司簡介</h2>
+    <p>ICX Technology 致力於提供先進的電子與嵌入式系統解決方案，為全球多個產業提供世界級的元件服務與技術支援。我們以誠信與創新為基礎，專注於高品質、靈活且可客製化的電子零組件供應服務，協助夥伴實現永續成長。</p>
+  </section>
+
+  <section class="section" style="background-color: #f4f7fb;">
+    <h2>我們的價值理念</h2>
+    <p>創新：我們的核心價值是持續創新。我們致力於突破半導體設計與製造的界限，打造次世代的處理器、感測器與系統單晶片（SoC），提升性能、效率與智慧化程度。
+
+連結：我們開發的晶片將人與設備連接起來，支援 IoT、生產自動化、5G 與高效能運算等應用。我們與全球代工、OEM 與系統整合商密切合作，建立開放與可靠的供應鏈。
+
+專業：我們擁有橫跨類比、數位、RF 及先進封裝的豐富經驗與專業技術，並運用自主 IP、嚴謹的驗證流程與量產經驗，實現穩定且具規模化的高品質產品。</p>
+  </section>
+
+  <section class="section">
+    <h2>聯絡我們</h2>
+    <div class="contact-form">
+      <form onsubmit="submitForm(event)">
+        <input type="text" placeholder="您的姓名" required />
+        <input type="email" placeholder="您的電子郵件" required />
+        <textarea rows="5" placeholder="您的留言" required></textarea>
+        <button type="submit">送出訊息</button>
+      </form>
+      <div class="contact-info">
+        <p><strong>電話：</strong>+886 86880921</p>
+        <p><strong>電子郵件：</strong>info@icxtech.com</p>
+        <p><strong>地址：</strong>香港九龍旺角花園街2-16號<br>好景商務中心24樓053室</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 ICX Technology 版權所有</p>
+  </footer>
+
+  <script>
+    function submitForm(e) {
+      e.preventDefault();
+      alert("感謝您的留言，我們將盡快與您聯繫！");
+    }
+  </script>
+</body>
+</html>
