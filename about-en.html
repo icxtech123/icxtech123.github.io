@@ -13,6 +13,112 @@
       line-height: 1.6;
     }
 
+    header {
+      background-color: #002244;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+      position: relative;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      white-space: nowrap;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-shrink: 0;
+    }
+
+    .logo-container img {
+      height: 50px;
+    }
+
+    nav {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      align-items: center;
+      transition: max-height 0.3s ease;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 0.3rem 0.5rem;
+      white-space: nowrap;
+      border-radius: 3px;
+      transition: background-color 0.3s;
+    }
+
+    nav a:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 25px;
+      height: 25px;
+      cursor: pointer;
+    }
+
+    .hamburger div {
+      width: 100%;
+      height: 3px;
+      background-color: white;
+      border-radius: 2px;
+      transition: all 0.3s linear;
+    }
+
+    .hamburger.active div:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .hamburger.active div:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active div:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    @media (max-width: 1024px) {
+      nav {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: #002244;
+        flex-direction: column;
+        overflow: hidden;
+        max-height: 0;
+        z-index: 1000;
+      }
+
+      nav.open {
+        max-height: 300px;
+      }
+
+      nav a {
+        padding: 1rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .hamburger {
+        display: flex;
+        flex-shrink: 0;
+      }
+    }
+
     .hero {
       background: url("skyscrapers.jpg") center/cover no-repeat;
       height: 400px;
@@ -84,6 +190,25 @@
   </style>
 </head>
 <body>
+  <header>
+    <div class="logo-container">
+      <img src="logo.png" alt="ICX Technology Logo" />
+      <h1>ICX Technology</h1>
+    </div>
+
+    <div class="hamburger" id="hamburger" aria-label="Toggle menu" role="button" tabindex="0">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+
+    <nav id="nav-menu">
+      <a href="index.html">Home</a>
+      <a href="about-en.html">About</a>
+      <a href="about-zh.html">關於我們</a>
+    </nav>
+  </header>
+
   <div class="hero">
     <h1>About ICX Technology</h1>
   </div>
@@ -92,19 +217,17 @@
     <h2>Our Company</h2>
     <p>ICX is a well-established, highly professional organization in 2019. The development of RF Communication and Embedded Sensor Networks, with a primary focus on Remote Sensing Technologies. Our strength lies in a foundation of highly dedicated designers, unwavering commitment to excellence, on-schedule delivery, and continuous performance improvement.
 
-The core mission of ICX is to pioneer the development of advanced Remote & Automated Embedded Sensor Network solutions—both wired and wireless. Our technology integrates fundamental remote sensing applications with comprehensive data management and high-throughput information processing, powered by our robust backend Server Cluster infrastructure. This integration defines our core technical competencies and system architecture.
+    The core mission of ICX is to pioneer the development of advanced Remote & Automated Embedded Sensor Network solutions—both wired and wireless. Our technology integrates fundamental remote sensing applications with comprehensive data management and high-throughput information processing, powered by our robust backend Server Cluster infrastructure. This integration defines our core technical competencies and system architecture.
 
-Driven by the goal of becoming a leader in Remote Sensor Network design and development, ICX has cultivated an impressive track record. We collaborate effectively with diverse local and international partners to deliver tailored Sensing Network solutions. Our portfolio encompasses Enterprise-grade, Industrial-grade, and High-reliability-grade applications, demonstrating our versatility and technical expertise.</p>
+    Driven by the goal of becoming a leader in Remote Sensor Network design and development, ICX has cultivated an impressive track record. We collaborate effectively with diverse local and international partners to deliver tailored Sensing Network solutions. Our portfolio encompasses Enterprise-grade, Industrial-grade, and High-reliability-grade applications, demonstrating our versatility and technical expertise.</p>
   </section>
 
   <section class="section" style="background-color: #f4f7fb;">
     <h2>Our Values</h2>
-    <p><strong>Innovate:</strong> At the core of our vision is relentless innovation. We push the boundaries of semiconductor design and manufacturing, creating next-generation processors, sensors, and SoCs that redefine performance, efficiency, and intelligence. Our R&D teams thrive on solving complex challenges — from ultra-low-power architectures to AI-accelerated silicon — ensuring we deliver cutting-edge technology that powers the future.</p>
-
-<p><strong>Connect:</strong> We engineer silicon that connects worlds. Our chips seamlessly link devices, data, and people across IoT ecosystems, 5G networks, autonomous systems, and high-performance computing. As a fabless leader, we collaborate deeply with global partners — from foundries to OEMs — building resilient supply chains and open ecosystems to accelerate adoption and maximize value for every stakeholder.</p>
-
-<p><strong>Xpertise:</strong> Decades of semiconductor expertise underpin everything we do. With deep domain knowledge in analog, digital, RF, and advanced packaging, our team masters the full stack of chip development. We leverage proprietary IP, rigorous validation processes, and fab-proven methodologies to ensure unmatched quality, reliability, and scalability — turning complex silicon visions into market-leading realities.</p>
-
+    <p><strong>Innovate:</strong> At the core of our vision is relentless innovation...</p>
+    <p><strong>Connect:</strong> We engineer silicon that connects worlds...</p>
+    <p><strong>Xpertise:</strong> Decades of semiconductor expertise underpin everything we do...</p>
+  </section>
 
   <section class="section">
     <h2>Contact Us</h2>
@@ -132,6 +255,21 @@ Driven by the goal of becoming a leader in Remote Sensor Network design and deve
       e.preventDefault();
       alert("Thank you for your message! We'll be in touch soon.");
     }
+
+    const hamburger = document.getElementById("hamburger");
+    const navMenu = document.getElementById("nav-menu");
+
+    hamburger.addEventListener("click", () => {
+      hamburger.classList.toggle("active");
+      navMenu.classList.toggle("open");
+    });
+
+    hamburger.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " " || e.key === "Spacebar") {
+        e.preventDefault();
+        hamburger.click();
+      }
+    });
   </script>
 </body>
 </html>
