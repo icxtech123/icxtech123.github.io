@@ -33,39 +33,40 @@
       flex-wrap: wrap;
       gap: 1rem;
       position: relative;
+      height: 60px; /* 固定导航栏高度 */
     }
 
-    header h1 {
-      font-size: 1.8rem;
-      white-space: nowrap;
-    }
-
-    header > div.logo-container {
+    .logo-container {
       display: flex;
       align-items: center;
-      gap: 1rem;
-      flex-shrink: 0;
+      height: 100%;
+      gap: 0.5rem;
+    }
+
+    .logo-container img {
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .logo-container h1 {
+      font-size: 1.8rem;
+      line-height: 1;
+      user-select: none;
+      white-space: nowrap;
     }
 
     nav {
       display: flex;
       gap: 1.5rem;
-      flex-wrap: wrap;
       align-items: center;
-      transition: max-height 0.3s ease;
     }
 
     nav a {
       color: white;
       text-decoration: none;
-      padding: 0.3rem 0.5rem;
+      user-select: none;
       white-space: nowrap;
-      border-radius: 3px;
-      transition: background-color 0.3s;
-    }
-
-    nav a:hover {
-      background-color: rgba(255, 255, 255, 0.2);
     }
 
     .lang-switcher {
@@ -75,7 +76,6 @@
       margin-left: 1rem;
       font-size: 1rem;
       cursor: pointer;
-      white-space: nowrap;
     }
 
     .hero {
@@ -87,7 +87,6 @@
       justify-content: center;
       color: white;
       text-align: center;
-      padding: 0 1rem;
     }
 
     .hero h2 {
@@ -95,14 +94,11 @@
       padding: 20px;
       border-radius: 10px;
       font-size: 2.5rem;
-      max-width: 90vw;
     }
 
     .section {
       padding: 60px 20px;
       text-align: center;
-      max-width: 900px;
-      margin: auto;
     }
 
     .section h3 {
@@ -122,7 +118,6 @@
       margin: 10px 0;
       border: 1px solid #ccc;
       border-radius: 5px;
-      font-size: 1rem;
     }
 
     .contact button {
@@ -132,21 +127,11 @@
       border: none;
       border-radius: 5px;
       cursor: pointer;
-      font-size: 1rem;
-      transition: background-color 0.3s;
-    }
-
-    .contact button:hover {
-      background-color: #004080;
     }
 
     .contact-info {
       margin-top: 40px;
       line-height: 2;
-      max-width: 500px;
-      margin-left: auto;
-      margin-right: auto;
-      font-size: 1rem;
     }
 
     footer {
@@ -155,7 +140,6 @@
       text-align: center;
       padding: 20px;
       margin-top: 40px;
-      font-size: 1rem;
     }
 
     [data-lang] {
@@ -166,104 +150,68 @@
       display: block !important;
     }
 
-    /* 汉堡菜单按钮样式 */
+    /* 汉堡菜单相关 */
+
     .hamburger {
       display: none;
       flex-direction: column;
       justify-content: space-around;
       width: 25px;
       height: 25px;
+      background: transparent;
+      border: none;
       cursor: pointer;
+      padding: 0;
+      box-sizing: border-box;
+      margin-left: 1rem;
     }
 
     .hamburger div {
-      width: 100%;
+      width: 25px;
       height: 3px;
-      background-color: white;
+      background: white;
       border-radius: 2px;
       transition: all 0.3s linear;
+      position: relative;
+      transform-origin: 1px;
     }
 
-    /* 当汉堡菜单激活时动画 */
-    .hamburger.active div:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
+    /* 菜单隐藏时的动画 */
+    .hamburger.open div:nth-child(1) {
+      transform: rotate(45deg);
     }
 
-    .hamburger.active div:nth-child(2) {
+    .hamburger.open div:nth-child(2) {
       opacity: 0;
     }
 
-    .hamburger.active div:nth-child(3) {
-      transform: rotate(-45deg) translate(5px, -5px);
+    .hamburger.open div:nth-child(3) {
+      transform: rotate(-45deg);
     }
 
-    /* ===== 响应式调整 ===== */
-
+    /* 小屏幕时隐藏导航，显示汉堡按钮 */
     @media (max-width: 1024px) {
-      header {
-        flex-direction: row;
-        align-items: center;
-        padding: 1rem;
-      }
-
-      header > div.logo-container {
-        flex-grow: 1;
-      }
-
       nav {
-        position: absolute;
-        top: 60px; /* header高度 */
-        left: 0;
+        display: none;
+        flex-direction: column;
         width: 100%;
         background-color: #002244;
-        flex-direction: column;
-        overflow: hidden;
-        max-height: 0;
-        transition: max-height 0.3s ease;
-        z-index: 1000;
+        position: absolute;
+        top: 60px; /* 距离header高度 */
+        left: 0;
+        z-index: 100;
       }
 
       nav.open {
-        max-height: 300px; /* 你可以根据菜单多少调整高度 */
-      }
-
-      nav a {
-        padding: 1rem;
-        border-top: 1px solid rgba(255, 255, 255, 0.2);
-        white-space: normal;
-      }
-
-      .lang-switcher {
-        margin: 0.5rem 1rem;
-        width: auto;
+        display: flex;
       }
 
       .hamburger {
         display: flex;
-        flex-shrink: 0;
-      }
-    }
-
-    @media (max-width: 480px) {
-      header h1 {
-        font-size: 1.5rem;
       }
 
-      .hero {
-        height: 250px;
-      }
-
-      .hero h2 {
-        font-size: 1.4rem;
-      }
-
-      .section h3 {
-        font-size: 1.2rem;
-      }
-
-      .contact button {
-        width: 100%;
-        padding: 10px 0;
+      .lang-switcher {
+        margin-left: 0.5rem;
       }
     }
   </style>
@@ -272,33 +220,28 @@
 <body>
   <header>
     <div class="logo-container">
-      <img
-        src="icxlogo.jpg"
-        alt="ICX Technology Logo"
-        style="height: 50px"
-      />
+      <img src="icxlogo.jpg" alt="ICX Technology Logo" />
       <h1>ICX Technology</h1>
     </div>
-
-    <!-- 汉堡菜单按钮 -->
-    <div class="hamburger" id="hamburger" aria-label="Toggle navigation menu" role="button" tabindex="0">
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-
-    <nav id="nav-menu">
-      <a href="#about" data-lang="en" class="visible">About</a>
-      <a href="#about" data-lang="zh-Hant">關於我們</a>
-      <a href="#services" data-lang="en" class="visible">Products & Services</a>
-      <a href="#services" data-lang="zh-Hant">產品與服務</a>
-      <a href="#contact" data-lang="en" class="visible">Contact</a>
-      <a href="#contact" data-lang="zh-Hant">聯絡我們</a>
+    <div style="display: flex; align-items: center;">
+      <nav id="nav-menu">
+        <a href="#about" data-lang="en" class="visible">About</a>
+        <a href="#about" data-lang="zh-Hant">關於我們</a>
+        <a href="#services" data-lang="en" class="visible">Products & Services</a>
+        <a href="#services" data-lang="zh-Hant">產品與服務</a>
+        <a href="#contact" data-lang="en" class="visible">Contact</a>
+        <a href="#contact" data-lang="zh-Hant">聯絡我們</a>
+      </nav>
       <select class="lang-switcher" onchange="switchLang(this.value)">
         <option value="en">English</option>
         <option value="zh-Hant" selected>繁體中文</option>
       </select>
-    </nav>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <div></div>
+        <div></div>
+        <div></div>
+      </button>
+    </div>
   </header>
 
   <div class="hero">
@@ -360,6 +303,16 @@
   </footer>
 
   <script>
+    const hamburger = document.getElementById("hamburger");
+    const navMenu = document.getElementById("nav-menu");
+
+    hamburger.addEventListener("click", () => {
+      navMenu.classList.toggle("open");
+      hamburger.classList.toggle("open");
+      const expanded = hamburger.getAttribute("aria-expanded") === "true";
+      hamburger.setAttribute("aria-expanded", !expanded);
+    });
+
     function switchLang(lang) {
       document.querySelectorAll("[data-lang]").forEach((el) => {
         el.classList.remove("visible");
@@ -371,27 +324,8 @@
 
     function submitForm(e) {
       e.preventDefault();
-      alert(
-        "感謝您的留言，我們將盡快與您聯繫 / Thank you for your message. We'll get back to you soon."
-      );
+      alert("感謝您的留言，我們將盡快與您聯繫 / Thank you for your message. We'll get back to you soon.");
     }
-
-    // 汉堡菜单切换逻辑
-    const hamburger = document.getElementById("hamburger");
-    const navMenu = document.getElementById("nav-menu");
-
-    hamburger.addEventListener("click", () => {
-      hamburger.classList.toggle("active");
-      navMenu.classList.toggle("open");
-    });
-
-    // 支持键盘回车或空格键切换汉堡菜单，提升无障碍
-    hamburger.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" || e.key === " " || e.key === "Spacebar") {
-        e.preventDefault();
-        hamburger.click();
-      }
-    });
   </script>
 </body>
 
