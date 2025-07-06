@@ -25,26 +25,25 @@
       position: relative;
     }
 
-    header h1 {
-      font-size: 1.8rem;
-      white-space: nowrap;
-    }
-
     .logo-container {
       display: flex;
       align-items: center;
       gap: 1rem;
-      flex-shrink: 0;
     }
 
     .logo-container img {
       height: 50px;
     }
 
+    .logo-container h1 {
+      font-size: 1.8rem;
+      margin: 0;
+      white-space: nowrap;
+    }
+
     nav {
       display: flex;
       gap: 1.5rem;
-      flex-wrap: wrap;
       align-items: center;
       transition: max-height 0.3s ease;
     }
@@ -91,7 +90,7 @@
       transform: rotate(-45deg) translate(5px, -5px);
     }
 
-    @media (max-width: 1024px) {
+    @media (max-width: 768px) {
       nav {
         position: absolute;
         top: 60px;
@@ -105,7 +104,7 @@
       }
 
       nav.open {
-        max-height: 300px;
+        max-height: 200px;
       }
 
       nav a {
@@ -115,7 +114,6 @@
 
       .hamburger {
         display: flex;
-        flex-shrink: 0;
       }
     }
 
@@ -195,17 +193,14 @@
       <img src="logo.png" alt="ICX Technology Logo" />
       <h1>ICX Technology</h1>
     </div>
-
     <div class="hamburger" id="hamburger" aria-label="切換選單" role="button" tabindex="0">
       <div></div>
       <div></div>
       <div></div>
     </div>
-
     <nav id="nav-menu">
       <a href="index.html">首頁</a>
-      <a href="about-en.html">About</a>
-      <a href="about-zh.html">關於我們</a>
+      <a href="about-en.html">English</a>
     </nav>
   </header>
 
@@ -221,7 +216,9 @@
   <section class="section" style="background-color: #f4f7fb;">
     <h2>我們的價值理念</h2>
     <p><strong>創新：</strong>我們的核心價值是持續創新。我們致力於突破半導體設計與製造的界限，打造次世代的處理器、感測器與系統單晶片（SoC），提升性能、效率與智慧化程度。</p>
+
     <p><strong>連結：</strong>我們開發的晶片將人與設備連接起來，支援 IoT、生產自動化、5G 與高效能運算等應用。我們與全球代工、OEM 與系統整合商密切合作，建立開放與可靠的供應鏈。</p>
+
     <p><strong>專業：</strong>我們擁有橫跨類比、數位、RF 及先進封裝的豐富經驗與專業技術，並運用自主 IP、嚴謹的驗證流程與量產經驗，實現穩定且具規模化的高品質產品。</p>
   </section>
 
