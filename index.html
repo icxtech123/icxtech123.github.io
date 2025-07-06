@@ -30,16 +30,39 @@
       justify-content: space-between;
       align-items: center;
       padding: 1rem 2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
     }
 
     header h1 {
       font-size: 1.8rem;
+      white-space: nowrap;
+    }
+
+    header > div:first-child {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-shrink: 0;
+    }
+
+    nav {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
     }
 
     nav a {
       color: white;
-      margin-left: 1.5rem;
       text-decoration: none;
+      padding: 0.3rem 0.5rem;
+      white-space: nowrap;
+      border-radius: 3px;
+      transition: background-color 0.3s;
+    }
+
+    nav a:hover {
+      background-color: rgba(255, 255, 255, 0.2);
     }
 
     .lang-switcher {
@@ -48,6 +71,7 @@
       border: none;
       margin-left: 1rem;
       font-size: 1rem;
+      cursor: pointer;
     }
 
     .hero {
@@ -59,6 +83,7 @@
       justify-content: center;
       color: white;
       text-align: center;
+      padding: 0 1rem;
     }
 
     .hero h2 {
@@ -66,11 +91,14 @@
       padding: 20px;
       border-radius: 10px;
       font-size: 2.5rem;
+      max-width: 90vw;
     }
 
     .section {
       padding: 60px 20px;
       text-align: center;
+      max-width: 900px;
+      margin: auto;
     }
 
     .section h3 {
@@ -90,6 +118,7 @@
       margin: 10px 0;
       border: 1px solid #ccc;
       border-radius: 5px;
+      font-size: 1rem;
     }
 
     .contact button {
@@ -99,11 +128,21 @@
       border: none;
       border-radius: 5px;
       cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s;
+    }
+
+    .contact button:hover {
+      background-color: #004080;
     }
 
     .contact-info {
       margin-top: 40px;
       line-height: 2;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 1rem;
     }
 
     footer {
@@ -112,6 +151,7 @@
       text-align: center;
       padding: 20px;
       margin-top: 40px;
+      font-size: 1rem;
     }
 
     [data-lang] {
@@ -120,6 +160,93 @@
 
     .visible {
       display: block !important;
+    }
+
+    /* ===== 响应式调整 ===== */
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      header > div:first-child {
+        margin-bottom: 10px;
+      }
+
+      nav {
+        width: 100%;
+        justify-content: flex-start;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      nav a {
+        padding: 0.5rem 1rem;
+        font-size: 1.1rem;
+      }
+
+      .lang-switcher {
+        margin-left: 0;
+        margin-top: 10px;
+        width: 100%;
+        font-size: 1.1rem;
+      }
+
+      .hero {
+        height: 300px;
+      }
+
+      .hero h2 {
+        font-size: 1.8rem;
+        padding: 10px;
+      }
+
+      .section {
+        padding: 40px 10px;
+        max-width: 100%;
+      }
+
+      .section h3 {
+        font-size: 1.5rem;
+      }
+
+      .contact form {
+        width: 100%;
+        padding: 0 10px;
+      }
+
+      .contact-info {
+        font-size: 0.9rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header h1 {
+        font-size: 1.5rem;
+      }
+
+      nav a {
+        font-size: 1rem;
+        padding: 0.4rem 0.7rem;
+      }
+
+      .hero {
+        height: 250px;
+      }
+
+      .hero h2 {
+        font-size: 1.4rem;
+      }
+
+      .section h3 {
+        font-size: 1.2rem;
+      }
+
+      .contact button {
+        width: 100%;
+        padding: 10px 0;
+      }
     }
   </style>
 </head>
@@ -161,7 +288,7 @@
     <p data-lang="en">
       ICX Technology is committed to delivering high-quality electronic components
       and innovative solutions across industries like communication, industrial,
-      automotive, and consumer electronics.
+      automotive, and energy storage.
     </p>
     <p data-lang="zh-Hant" class="visible">
       ICX Technology 致力於為通訊、工業、汽車、储能等多個行業提供高品質的電子零組件與創新解決方案。
@@ -226,3 +353,4 @@
 </body>
 
 </html>
+
