@@ -32,6 +32,7 @@
       padding: 1rem 2rem;
       flex-wrap: wrap;
       gap: 1rem;
+      position: relative;
     }
 
     header h1 {
@@ -39,7 +40,7 @@
       white-space: nowrap;
     }
 
-    header > div:first-child {
+    header > div.logo-container {
       display: flex;
       align-items: center;
       gap: 1rem;
@@ -50,6 +51,8 @@
       display: flex;
       gap: 1.5rem;
       flex-wrap: wrap;
+      align-items: center;
+      transition: max-height 0.3s ease;
     }
 
     nav a {
@@ -72,6 +75,7 @@
       margin-left: 1rem;
       font-size: 1rem;
       cursor: pointer;
+      white-space: nowrap;
     }
 
     .hero {
@@ -162,73 +166,87 @@
       display: block !important;
     }
 
+    /* 汉堡菜单按钮样式 */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 25px;
+      height: 25px;
+      cursor: pointer;
+    }
+
+    .hamburger div {
+      width: 100%;
+      height: 3px;
+      background-color: white;
+      border-radius: 2px;
+      transition: all 0.3s linear;
+    }
+
+    /* 当汉堡菜单激活时动画 */
+    .hamburger.active div:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .hamburger.active div:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active div:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
     /* ===== 响应式调整 ===== */
 
-    @media (max-width: 768px) {
+    @media (max-width: 1024px) {
       header {
-        flex-direction: column;
-        align-items: flex-start;
+        flex-direction: row;
+        align-items: center;
+        padding: 1rem;
       }
 
-      header > div:first-child {
-        margin-bottom: 10px;
+      header > div.logo-container {
+        flex-grow: 1;
       }
 
       nav {
+        position: absolute;
+        top: 60px; /* header高度 */
+        left: 0;
         width: 100%;
-        justify-content: flex-start;
-        gap: 1rem;
-        flex-wrap: wrap;
+        background-color: #002244;
+        flex-direction: column;
+        overflow: hidden;
+        max-height: 0;
+        transition: max-height 0.3s ease;
+        z-index: 1000;
+      }
+
+      nav.open {
+        max-height: 300px; /* 你可以根据菜单多少调整高度 */
       }
 
       nav a {
-        padding: 0.5rem 1rem;
-        font-size: 1.1rem;
+        padding: 1rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        white-space: normal;
       }
 
       .lang-switcher {
-        margin-left: 0;
-        margin-top: 10px;
-        width: 100%;
-        font-size: 1.1rem;
+        margin: 0.5rem 1rem;
+        width: auto;
       }
 
-      .hero {
-        height: 300px;
-      }
-
-      .hero h2 {
-        font-size: 1.8rem;
-        padding: 10px;
-      }
-
-      .section {
-        padding: 40px 10px;
-        max-width: 100%;
-      }
-
-      .section h3 {
-        font-size: 1.5rem;
-      }
-
-      .contact form {
-        width: 100%;
-        padding: 0 10px;
-      }
-
-      .contact-info {
-        font-size: 0.9rem;
+      .hamburger {
+        display: flex;
+        flex-shrink: 0;
       }
     }
 
     @media (max-width: 480px) {
       header h1 {
         font-size: 1.5rem;
-      }
-
-      nav a {
-        font-size: 1rem;
-        padding: 0.4rem 0.7rem;
       }
 
       .hero {
@@ -253,7 +271,7 @@
 
 <body>
   <header>
-    <div style="display: flex; align-items: center; gap: 1rem;">
+    <div class="logo-container">
       <img
         src="https://via.placeholder.com/150x50?text=ICX+Logo"
         alt="ICX Technology Logo"
@@ -261,20 +279,26 @@
       />
       <h1>ICX Technology</h1>
     </div>
-    <div style="display: flex; align-items: center;">
-      <nav style="display: flex; gap: 1.5rem;">
-        <a href="#about" data-lang="en" class="visible">About</a>
-        <a href="#about" data-lang="zh-Hant">關於我們</a>
-        <a href="#services" data-lang="en" class="visible">Products & Services</a>
-        <a href="#services" data-lang="zh-Hant">產品與服務</a>
-        <a href="#contact" data-lang="en" class="visible">Contact</a>
-        <a href="#contact" data-lang="zh-Hant">聯絡我們</a>
-      </nav>
+
+    <!-- 汉堡菜单按钮 -->
+    <div class="hamburger" id="hamburger" aria-label="Toggle navigation menu" role="button" tabindex="0">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+
+    <nav id="nav-menu">
+      <a href="#about" data-lang="en" class="visible">About</a>
+      <a href="#about" data-lang="zh-Hant">關於我們</a>
+      <a href="#services" data-lang="en" class="visible">Products & Services</a>
+      <a href="#services" data-lang="zh-Hant">產品與服務</a>
+      <a href="#contact" data-lang="en" class="visible">Contact</a>
+      <a href="#contact" data-lang="zh-Hant">聯絡我們</a>
       <select class="lang-switcher" onchange="switchLang(this.value)">
         <option value="en">English</option>
         <option value="zh-Hant" selected>繁體中文</option>
       </select>
-    </div>
+    </nav>
   </header>
 
   <div class="hero">
@@ -347,10 +371,28 @@
 
     function submitForm(e) {
       e.preventDefault();
-      alert("感謝您的留言，我們將盡快與您聯繫 / Thank you for your message. We'll get back to you soon.");
+      alert(
+        "感謝您的留言，我們將盡快與您聯繫 / Thank you for your message. We'll get back to you soon."
+      );
     }
+
+    // 汉堡菜单切换逻辑
+    const hamburger = document.getElementById("hamburger");
+    const navMenu = document.getElementById("nav-menu");
+
+    hamburger.addEventListener("click", () => {
+      hamburger.classList.toggle("active");
+      navMenu.classList.toggle("open");
+    });
+
+    // 支持键盘回车或空格键切换汉堡菜单，提升无障碍
+    hamburger.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " " || e.key === "Spacebar") {
+        e.preventDefault();
+        hamburger.click();
+      }
+    });
   </script>
 </body>
 
 </html>
-
