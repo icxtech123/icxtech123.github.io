@@ -1,10 +1,228 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Hello Page</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ICX Technology</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Roboto", sans-serif;
+    }
+
+    body {
+      background: #fff;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: #002244;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+    }
+
+    nav a {
+      color: white;
+      margin-left: 1.5rem;
+      text-decoration: none;
+    }
+
+    .lang-switcher {
+      color: white;
+      background: #002244;
+      border: none;
+      margin-left: 1rem;
+      font-size: 1rem;
+    }
+
+    .hero {
+      height: 500px;
+      background: url("https://cdn.pixabay.com/photo/2021/04/01/06/06/circuit-board-6139736_1280.jpg")
+        center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+    }
+
+    .hero h2 {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 20px;
+      border-radius: 10px;
+      font-size: 2.5rem;
+    }
+
+    .section {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .section h3 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .contact form {
+      max-width: 500px;
+      margin: auto;
+    }
+
+    .contact input,
+    .contact textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .contact button {
+      background: #002244;
+      color: white;
+      padding: 10px 30px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .contact-info {
+      margin-top: 40px;
+      line-height: 2;
+    }
+
+    footer {
+      background: #002244;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+
+    [data-lang] {
+      display: none;
+    }
+
+    .visible {
+      display: block !important;
+    }
+  </style>
 </head>
+
 <body>
-  <h1>hello 璐璐 !</h1>
+  <header>
+    <div style="display: flex; align-items: center; gap: 1rem;">
+      <img
+        src="https://via.placeholder.com/150x50?text=ICX+Logo"
+        alt="ICX Technology Logo"
+        style="height: 50px"
+      />
+      <h1>ICX Technology</h1>
+    </div>
+    <div style="display: flex; align-items: center;">
+      <nav style="display: flex; gap: 1.5rem;">
+        <a href="#about" data-lang="en" class="visible">About</a>
+        <a href="#about" data-lang="zh-Hant">關於我們</a>
+        <a href="#services" data-lang="en" class="visible">Products & Services</a>
+        <a href="#services" data-lang="zh-Hant">產品與服務</a>
+        <a href="#contact" data-lang="en" class="visible">Contact</a>
+        <a href="#contact" data-lang="zh-Hant">聯絡我們</a>
+      </nav>
+      <select class="lang-switcher" onchange="switchLang(this.value)">
+        <option value="en">English</option>
+        <option value="zh-Hant" selected>繁體中文</option>
+      </select>
+    </div>
+  </header>
+
+  <div class="hero">
+    <h2 data-lang="en" class="visible">Innovative Semiconductor Solutions</h2>
+    <h2 data-lang="zh-Hant">創新的半導體解決方案</h2>
+  </div>
+
+  <section class="section" id="about">
+    <h3 data-lang="en">About ICX Technology</h3>
+    <h3 data-lang="zh-Hant" class="visible">關於 ICX Technology</h3>
+    <p data-lang="en">
+      ICX Technology is committed to delivering high-quality electronic components
+      and innovative solutions across industries like communication, industrial,
+      automotive, and consumer electronics.
+    </p>
+    <p data-lang="zh-Hant" class="visible">
+      ICX Technology 致力於為通訊、工業、汽車及消費電子等多個行業提供高品質的電子零組件與創新解決方案。
+    </p>
+  </section>
+
+  <section class="section" id="services">
+    <h3 data-lang="en">Products & Services</h3>
+    <h3 data-lang="zh-Hant" class="visible">產品與服務</h3>
+    <p data-lang="en">
+      We offer a wide range of IC chips, power management devices, interface
+      components, and customized design services.
+    </p>
+    <p data-lang="zh-Hant" class="visible">
+      我們提供豐富的 IC 晶片、電源管理設備、介面元件及客製化設計服務。
+    </p>
+  </section>
+
+  <section class="section contact" id="contact">
+    <h3 data-lang="en">Contact Us</h3>
+    <h3 data-lang="zh-Hant" class="visible">聯絡我們</h3>
+    <form onsubmit="submitForm(event)">
+      <input type="text" placeholder="Name / 姓名" required />
+      <input type="email" placeholder="Email / 電子郵件" required />
+      <textarea rows="5" placeholder="Message / 留言內容" required></textarea>
+      <button type="submit" data-lang="en">Submit</button>
+      <button type="submit" data-lang="zh-Hant" class="visible">提交</button>
+    </form>
+    <div class="contact-info">
+      <p data-lang="en">
+        Phone: +886 86880921<br />
+        Email: info@icxtech.com<br />
+        Address: RM053,24/F, HO KING COMM CTR, 2-16 FAYUEN ST, MONG KOK HONG KONG
+      </p>
+      <p data-lang="zh-Hant" class="visible">
+        電話：+886 86880921<br />
+        電子郵件：info@icxtech.com<br />
+        地址：香港九龍旺角花園街2-16號好景商務中心24樓053室
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 ICX Technology 版權所有 / All Rights Reserved</p>
+  </footer>
+
+  <script>
+    function switchLang(lang) {
+      document.querySelectorAll("[data-lang]").forEach((el) => {
+        el.classList.remove("visible");
+        if (el.getAttribute("data-lang") === lang) {
+          el.classList.add("visible");
+        }
+      });
+    }
+
+    function submitForm(e) {
+      e.preventDefault();
+      alert("感謝您的留言，我們將盡快與您聯繫 / Thank you for your message. We'll get back to you soon.");
+    }
+  </script>
 </body>
+
 </html>
