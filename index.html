@@ -37,7 +37,7 @@
       white-space: nowrap;
     }
 
-    header > div.logo-container {
+    header>div.logo-container {
       display: flex;
       align-items: center;
       gap: 1rem;
@@ -227,7 +227,7 @@
         padding: 1rem;
       }
 
-      header > div.logo-container {
+      header>div.logo-container {
         flex-grow: 1;
       }
 
@@ -284,6 +284,96 @@
       .contact button {
         width: 100%;
         padding: 10px 0;
+      }
+    }
+
+
+    /* ====== 轮播图样式 ====== */
+
+    .carousel {
+      position: relative;
+      max-width: 900px;
+      height: 400px;
+      margin: 30px auto 0;
+      overflow: hidden;
+      border-radius: 10px;
+      background: #161b22;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    }
+
+    .carousel img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    .carousel img.active {
+      display: block;
+      opacity: 1;
+      position: relative;
+    }
+
+    .arrow {
+      position: absolute;
+      top: 50%;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.2);
+      color: #e6edf3;
+      border-radius: 50%;
+      line-height: 40px;
+      text-align: center;
+      font-size: 28px;
+      cursor: pointer;
+      user-select: none;
+      transform: translateY(-50%);
+      z-index: 10;
+      transition: background 0.3s;
+    }
+
+    .arrow:hover {
+      background: rgba(88, 166, 255, 0.8);
+    }
+
+    .arrow.left {
+      left: 15px;
+    }
+
+    .arrow.right {
+      right: 15px;
+    }
+
+    .dots {
+      position: absolute;
+      bottom: 15px;
+      width: 100%;
+      text-align: center;
+      z-index: 10;
+    }
+
+    .dots span {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      margin: 0 6px;
+      background: rgba(230, 237, 243, 0.3);
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .dots span.active {
+      background: #58a6ff;
+    }
+
+    @media (max-width: 480px) {
+      .carousel {
+        height: 250px;
       }
     }
   </style>
@@ -364,6 +454,27 @@
       </div>
     </div>
   </section>
+
+  <!-- 這裡插入輪播圖 -->
+  <section class="carousel-section section">
+    <h3 data-lang="en">Our Highlights</h3>
+    <h3 data-lang="zh-Hant" class="visible">精彩展示</h3>
+
+    <div class="carousel" id="carousel">
+      <img src="images/MC.png" alt="圖片1" class="active" />
+      <img src="images/AD.png" alt="圖片2" />
+      <img src="images/TI.png" alt="圖片3" />
+      <img src="images/ST.png" alt="圖片4" />
+      <img src="images/ON.png" alt="圖片5" />
+      <img src="images/INFENION.png" alt="圖片6" />
+      <img src="images/SILICON.png" alt="圖片7" />
+      <img src="images/NXP.png" alt="圖片7" />
+      <div class="arrow left" id="prev">&#10094;</div>
+      <div class="arrow right" id="next">&#10095;</div>
+      <div class="dots" id="dots"></div>
+    </div>
+  </section>
+
   <section class="section contact" id="contact">
     <h3 data-lang="en">Contact Us</h3>
     <h3 data-lang="zh-Hant" class="visible">聯絡我們</h3>
@@ -376,12 +487,10 @@
     </form>
     <div class="contact-info">
       <p data-lang="en">
-       
         Email: info@icxtech.com<br />
         Address: RM053,24/F, HO KING COMM CTR, 2-16 FAYUEN ST, MONG KOK HONG KONG
       </p>
       <p data-lang="zh-Hant" class="visible">
-        
         電子郵件：info@icxtech.com<br />
         地址：香港九龍旺角花園街2-16號好景商務中心24樓053室
       </p>
@@ -416,7 +525,19 @@
         hamburger.click();
       }
     });
-  </script>
-</body>
 
-</html>
+    // 轮播图 JS
+    (function () {
+      const carousel = document.getElementById("carousel");
+      const images = carousel.querySelectorAll("img");
+      const prevBtn = document.getElementById("prev");
+      const nextBtn = document.getElementById("next");
+      const dotsContainer = document.getElementById("dots");
+      let currentIndex = 0;
+      let interval = null;
+
+      // 初始化圓點
+      for (let i = 0; i < images.length; i++) {
+        const dot = document.createElement("span");
+        dot.dataset.index = i;
+        if (i
