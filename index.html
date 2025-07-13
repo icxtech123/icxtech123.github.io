@@ -5,10 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ICX Technology</title>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet" />
   <style>
     * {
       box-sizing: border-box;
@@ -18,13 +15,13 @@
     }
 
     body {
-      background: #fff;
-      color: #333;
+      background: #0d1117;
+      color: #e6edf3;
       line-height: 1.6;
     }
 
     header {
-      background-color: #002244;
+      background-color: #161b22;
       color: white;
       display: flex;
       justify-content: space-between;
@@ -56,7 +53,7 @@
     }
 
     nav a {
-      color: white;
+      color: #e6edf3;
       text-decoration: none;
       padding: 0.3rem 0.5rem;
       white-space: nowrap;
@@ -65,13 +62,13 @@
     }
 
     nav a:hover {
-      background-color: rgba(255, 255, 255, 0.2);
+      background-color: #21262d;
     }
 
     .lang-switcher {
       color: white;
-      background: #002244;
-      border: none;
+      background: #161b22;
+      border: 1px solid #30363d;
       margin-left: 1rem;
       font-size: 1rem;
       cursor: pointer;
@@ -80,8 +77,7 @@
 
     .hero {
       height: 500px;
-      background: url("hero.jpeg")
-        center/cover no-repeat;
+      background: url("hero.jpeg") center/cover no-repeat;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -91,7 +87,7 @@
     }
 
     .hero h2 {
-      background: rgba(0, 0, 0, 0.5);
+      background: rgba(0, 0, 0, 0.6);
       padding: 20px;
       border-radius: 10px;
       font-size: 2.5rem;
@@ -108,6 +104,34 @@
     .section h3 {
       font-size: 2rem;
       margin-bottom: 20px;
+      color: #58a6ff;
+    }
+
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      margin-top: 30px;
+    }
+
+    .feature-box {
+      flex: 1 1 250px;
+      border: 1px solid #30363d;
+      border-radius: 10px;
+      padding: 20px;
+      background: #161b22;
+      text-align: left;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .feature-box:hover {
+      box-shadow: 0 4px 12px rgba(88, 166, 255, 0.2);
+    }
+
+    .feature-box h4 {
+      margin-bottom: 10px;
+      color: #79c0ff;
     }
 
     .contact form {
@@ -120,13 +144,14 @@
       width: 100%;
       padding: 10px;
       margin: 10px 0;
-      border: 1px solid #ccc;
+      border: 1px solid #30363d;
       border-radius: 5px;
-      font-size: 1rem;
+      background-color: #0d1117;
+      color: #e6edf3;
     }
 
     .contact button {
-      background: #002244;
+      background: #238636;
       color: white;
       padding: 10px 30px;
       border: none;
@@ -137,7 +162,7 @@
     }
 
     .contact button:hover {
-      background-color: #004080;
+      background-color: #2ea043;
     }
 
     .contact-info {
@@ -150,7 +175,7 @@
     }
 
     footer {
-      background: #002244;
+      background: #161b22;
       color: white;
       text-align: center;
       padding: 20px;
@@ -166,7 +191,6 @@
       display: block !important;
     }
 
-    /* 汉堡菜单按钮样式 */
     .hamburger {
       display: none;
       flex-direction: column;
@@ -184,7 +208,6 @@
       transition: all 0.3s linear;
     }
 
-    /* 当汉堡菜单激活时动画 */
     .hamburger.active div:nth-child(1) {
       transform: rotate(45deg) translate(5px, 5px);
     }
@@ -196,8 +219,6 @@
     .hamburger.active div:nth-child(3) {
       transform: rotate(-45deg) translate(5px, -5px);
     }
-
-    /* ===== 响应式调整 ===== */
 
     @media (max-width: 1024px) {
       header {
@@ -212,10 +233,10 @@
 
       nav {
         position: absolute;
-        top: 60px; /* header高度 */
+        top: 60px;
         left: 0;
         width: 100%;
-        background-color: #002244;
+        background-color: #161b22;
         flex-direction: column;
         overflow: hidden;
         max-height: 0;
@@ -224,13 +245,12 @@
       }
 
       nav.open {
-        max-height: 300px; /* 你可以根据菜单多少调整高度 */
+        max-height: 300px;
       }
 
       nav a {
         padding: 1rem;
         border-top: 1px solid rgba(255, 255, 255, 0.2);
-        white-space: normal;
       }
 
       .lang-switcher {
@@ -272,15 +292,10 @@
 <body>
   <header>
     <div class="logo-container">
-      <img
-        src="logo.png"
-        alt="ICX Technology Logo"
-        style="height: 50px"
-      />
+      <img src="logo.png" alt="ICX Technology Logo" style="height: 50px" />
       <h1>ICX Technology</h1>
     </div>
 
-    <!-- 汉堡菜单按钮 -->
     <div class="hamburger" id="hamburger" aria-label="Toggle navigation menu" role="button" tabindex="0">
       <div></div>
       <div></div>
@@ -289,7 +304,6 @@
 
     <nav id="nav-menu">
       <a href="about-en.html" data-lang="en" class="visible">About</a>
-
       <a href="about-zh.html" data-lang="zh-Hant">關於我們</a>
       <a href="#services" data-lang="en" class="visible">Products & Services</a>
       <a href="#services" data-lang="zh-Hant">產品與服務</a>
@@ -307,31 +321,49 @@
     <h2 data-lang="zh-Hant">創新的半導體解決方案</h2>
   </div>
 
-  <section class="section" id="about">
-    <h3 data-lang="en">About ICX Technology</h3>
-    <h3 data-lang="zh-Hant" class="visible">關於 ICX Technology</h3>
-    <p data-lang="en">
-      ICX Technology is committed to delivering high-quality electronic components
-      and innovative solutions across industries like communication, industrial,
-      automotive, and energy storage.
-    </p>
-    <p data-lang="zh-Hant" class="visible">
-      ICX Technology 致力於為通訊、工業、汽車、储能等多個行業提供高品質的電子零組件與創新解決方案。
-    </p>
-  </section>
-
   <section class="section" id="services">
     <h3 data-lang="en">Products & Services</h3>
     <h3 data-lang="zh-Hant" class="visible">產品與服務</h3>
-    <p data-lang="en">
-      We offer a wide range of IC chips, power management devices, interface
-      components, and customized design services.
-    </p>
-    <p data-lang="zh-Hant" class="visible">
-      我們提供豐富的 IC 晶片、電源管理設備、介面元件及客製化設計服務。
-    </p>
+    <div class="features">
+      <div class="feature-box">
+        <h4 data-lang="en">Electronic Design</h4>
+        <h4 data-lang="zh-Hant" class="visible">電子設計</h4>
+        <p data-lang="en">Custom circuit and PCB design for embedded and IoT applications.</p>
+        <p data-lang="zh-Hant" class="visible">專為嵌入式與物聯網應用設計客製化電路與 PCB。</p>
+      </div>
+      <div class="feature-box">
+        <h4 data-lang="en">Prototyping</h4>
+        <h4 data-lang="zh-Hant" class="visible">原型打樣</h4>
+        <p data-lang="en">Rapid hardware prototyping service from design files to working demo boards.</p>
+        <p data-lang="zh-Hant" class="visible">快速實現從設計圖到功能板的電子硬體原型打樣。</p>
+      </div>
+    </div>
   </section>
 
+  <section class="section">
+    <h3 data-lang="en">Why Choose Us</h3>
+    <h3 data-lang="zh-Hant" class="visible">為什麼選擇我們</h3>
+    <div class="features">
+      <div class="feature-box">
+        <h4 data-lang="en">Customized Design</h4>
+        <h4 data-lang="zh-Hant" class="visible">客製化設計</h4>
+        <p data-lang="en">Tailor-made solutions to meet your application-specific needs.</p>
+        <p data-lang="zh-Hant" class="visible">依客戶應用需求量身打造最佳解決方案。</p>
+      </div>
+      <div class="feature-box">
+        <h4 data-lang="en">Global Sourcing</h4>
+        <h4 data-lang="zh-Hant" class="visible">全球採購</h4>
+        <p data-lang="en">Extensive supply chain network to access top-tier components worldwide.</p>
+        <p data-lang="zh-Hant" class="visible">建構全球零組件供應鏈，取得高品質資源。</p>
+      </div>
+      <div class="feature-box">
+        <h4 data-lang="en">Reliable Quality</h4>
+        <h4 data-lang="zh-Hant" class="visible">品質可靠</h4>
+        <p data-lang="en">Strict quality control ensures every part meets industry standards.</p>
+        <p data-lang="zh-Hant" class="visible">嚴格品管確保所有產品達到業界標準。</p>
+      </div>
+    </div>
+  </section>
   <section class="section contact" id="contact">
     <h3 data-lang="en">Contact Us</h3>
     <h3 data-lang="zh-Hant" class="visible">聯絡我們</h3>
@@ -370,14 +402,6 @@
       });
     }
 
-    function submitForm(e) {
-      e.preventDefault();
-      alert(
-        "感謝您的留言，我們將盡快與您聯繫 / Thank you for your message. We'll get back to you soon."
-      );
-    }
-
-    // 汉堡菜单切换逻辑
     const hamburger = document.getElementById("hamburger");
     const navMenu = document.getElementById("nav-menu");
 
@@ -386,7 +410,6 @@
       navMenu.classList.toggle("open");
     });
 
-    // 支持键盘回车或空格键切换汉堡菜单，提升无障碍
     hamburger.addEventListener("keydown", (e) => {
       if (e.key === "Enter" || e.key === " " || e.key === "Spacebar") {
         e.preventDefault();
